@@ -32,7 +32,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://zerodha-dashboard-4uqxwe24x-kakinada-mohankumars-projects.vercel.app",
+        `${process.env.REACT_APP_API_URL}/signup`,
         {
           ...inputValue,
         },

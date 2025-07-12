@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+console.log("URL: ", process.env.REACT_APP_API_URL);
+
+
 const Login = () => {
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -22,12 +25,12 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://zerodha-dashboard-4uqxwe24x-kakinada-mohankumars-projects.vercel.app",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
+  `${process.env.REACT_APP_API_URL}/login`, // ← Add `/login` here
+  { ...inputValue },
+  { withCredentials: true }
+);
+
+
 
       const { success, message } = data;
       if (success) {
