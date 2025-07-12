@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: [
-  "https://zerodha-dashboard-6ajw.vercel.app"],
+  "https:/zerodha-dashboard-6ajw.vercel.app"],
   credentials: true
 }));
 
