@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: [
-  "https://zerodha-dashboard-6ajw-4d7147r6v-kakinada-mohankumars-projects.vercel.app"],
+  "https://zerodha-dashboard-6ajw.vercel.app"],
   credentials: true
 }));
 
