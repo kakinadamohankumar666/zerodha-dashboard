@@ -15,6 +15,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true); // ✅ added loading state
   const hasVerified = useRef(false); // ✅ prevent double execution
   const { setUsername, username} = useContext(GeneralContext); // ✅ use global context
+  const API = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (hasVerified.current) return;
@@ -27,10 +28,11 @@ const Home = () => {
       }
       try {
         const { data } = await axios.post(
-          "http://localhost:3002",
-          {},
-          { withCredentials: true }
-        );
+        `${API}/`,
+        {},
+        { withCredentials: true }
+         );
+
         const { status, user } = data;
         if (status) {
           setUsername(user);

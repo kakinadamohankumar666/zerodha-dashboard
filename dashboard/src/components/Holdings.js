@@ -7,14 +7,18 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
-  useEffect(() =>{
-    axios.get("http://localhost:3002/allHoldings").then((res) =>{
+  useEffect(() => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/allHoldings`)
+    .then((res) => {
       console.log(res.data);
       setAllHoldings(res.data);
+    })
+    .catch((err) => {
+      console.error("Error fetching holdings:", err);
     });
-  },[]);
+}, []);
 
-  // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 const labels = allHoldings.map((subArray) => subArray["name"]);
 const data = {
   labels,

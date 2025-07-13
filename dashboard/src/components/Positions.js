@@ -6,12 +6,16 @@ import axios from "axios";
 const Positions = () => {
 
   const [allpositions, setAllPositions] = useState([]);
-  useEffect(() =>{
-    axios.get("http://localhost:3002/allPositions").then((res)=>{
+  useEffect(() => {
+  axios.get(`${process.env.REACT_APP_API_URL}/allPositions`)
+    .then((res) => {
       console.log(res.data);
       setAllPositions(res.data);
+    })
+    .catch((err) => {
+      console.error("Failed to fetch positions:", err);
     });
-  },[]);
+}, []);
   return (
     <>
       <h3 className="title">Positions ({allpositions.length})</h3>

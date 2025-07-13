@@ -1,0 +1,20 @@
+# === dependencies ===
+node_modules/
+
+# === build folders ===
+dashboard/build/
+backend/build/
+backend/dist/
+
+# === env files ===
+*.env
+.env*
+
+# === logs ===
+*.log
+
+# === OS / IDE clutter ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
