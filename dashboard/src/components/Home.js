@@ -22,10 +22,6 @@ const Home = () => {
     hasVerified.current = true; // ✅ only run once
 
     const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-        return;
-      }
       try {
         const { data } = await axios.post(
         `${API}/`,
