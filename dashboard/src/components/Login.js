@@ -8,6 +8,8 @@ console.log("URL: ", process.env.REACT_APP_API_URL);
 
 
 const Login = () => {
+
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -30,8 +32,6 @@ const Login = () => {
   { ...inputValue },
   { withCredentials: true }
 );
-
-const navigate = useNavigate();
 
       const { success, message } = data;
       if (success) {
