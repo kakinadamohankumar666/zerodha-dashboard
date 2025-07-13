@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 console.log("URL: ", process.env.REACT_APP_API_URL);
 
 
 const Login = () => {
-
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -28,16 +25,18 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-  `${process.env.REACT_APP_API_URL}/login`,
+  `${process.env.REACT_APP_API_URL}/login`, // ← Add `/login` here
   { ...inputValue },
   { withCredentials: true }
 );
 
+
+
       const { success, message } = data;
       if (success) {
-  toast.success(message, { position: "bottom-left" });
-  setTimeout(() => navigate("/"), 1500); // optional delay
-} else {
+        toast.success(message, { position: "bottom-left" });
+        window.location.href = "/";
+      } else {
         toast.error(message, { position: "bottom-left" });
       }
     } catch (error) {
@@ -77,7 +76,7 @@ const Login = () => {
           </div>
           <button type="submit">Submit</button>
           <span>
-            Don't have an account? <Link to={"/signup"}>Signup</Link>
+            Already have an account? <Link to={"/signup"}>Signup</Link>
           </span>
         </form>
         <ToastContainer />
