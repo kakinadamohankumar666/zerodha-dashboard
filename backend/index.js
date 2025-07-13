@@ -18,8 +18,7 @@ const url = process.env.MONGO_URL;
 const app = express();
 
 app.use(cors({
-  origin: [ "https://zerodha-dashboard-sigma.vercel.app"],
-  credentials: true
+  origin: [ "*"],
 }));
 
 app.use(cookieParser());
