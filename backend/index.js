@@ -19,7 +19,7 @@ const app = express();
 
 app.use(cors({
   origin: [ "https://zerodha-dashboard-sigma.vercel.app"],
-  credentials: true
+  credentials: true,
 }));
 
 app.use(cookieParser());
