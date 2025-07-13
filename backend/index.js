@@ -16,14 +16,18 @@ const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
 const app = express();
+
+app.use(cors({
+  origin: [ "https://zerodha-dashboard-sigma.vercel.app"],
+  credentials: true
+}));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json()); 
+app.use("/", authRoute); // All routes mounted after CORS
 
-app.use(cors({
-  origin: [ "https://zerodha-dashboard-sigma.vercel.app/"],
-  credentials: true
-}));
 
 app.use(bodyParser.json());
 
