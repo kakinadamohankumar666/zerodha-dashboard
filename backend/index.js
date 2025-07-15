@@ -18,7 +18,7 @@ const url = process.env.MONGO_URL;
 const app = express();
 
 app.use(cors({
-  origin: [ "https://zerodha-dashboard-sigma.vercel.app"],
+  origin: [ "http://localhost:3000"],
   credentials: true,
 }));
 
@@ -27,9 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use("/", authRoute); // All routes mounted after CORS
-
-
-app.use(bodyParser.json());
 
 // app.get('/addHoldings',async(req,res)=>{
 //     let tempHoldings= [
@@ -229,6 +226,3 @@ app.listen(PORT, () =>{
 mongoose.connect(url)
   .then(() => console.log('MongoDB is connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-
-app.use("/", authRoute);
