@@ -21,7 +21,8 @@ const app = express();
 app.use(cors({
   origin: [ "http://localhost:3000",
      "https://zerodha-dashboard-sigma.vercel.app",
-     "https://zerodha-dashboard-pjw4fwuxz-kakinada-mohankumars-projects.vercel.app"
+     "https://zerodha-dashboard-pjw4fwuxz-kakinada-mohankumars-projects.vercel.app",
+     "https://zerodha-dashboard-git-main-kakinada-mohankumars-projects.vercel.app"
   ],
   credentials: true,
 }));
