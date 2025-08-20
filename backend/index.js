@@ -1,11 +1,12 @@
 require("dotenv").config();
 
+const { Signup, Login } = require('./controllers/AuthController');
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const authRoute = require("./routes/AuthRoute.js");
+// const authRoute = require("./routes/AuthRoute.js");
 const cookieParser = require("cookie-parser");
 
 const {HoldingsModel} = require("./model/HoldingsModel");
@@ -29,7 +30,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
-app.use("/", authRoute); // All routes mounted after CORS
+// app.use("/", authRoute); // All routes mounted after CORS
 
 // app.get('/addHoldings',async(req,res)=>{
 //     let tempHoldings= [
@@ -195,6 +196,12 @@ app.use("/", authRoute); // All routes mounted after CORS
 //   });
 //   res.send("Done");
 // });
+
+
+// ADD THESE LINES
+app.post('/signup', Signup);
+app.post('/login', Login);
+
 
 app.get("/allHoldings" ,async (req ,res) =>{
     let allHoldings = await HoldingsModel.find({});
