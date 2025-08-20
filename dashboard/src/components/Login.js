@@ -25,15 +25,15 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-  `${process.env.REACT_APP_API_URL}/login`,
-  { ...inputValue },
-  {
-    withCredentials: true, // ✅ only if you're using cookies
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }
-);
+        `${process.env.REACT_APP_API_URL}/login`,
+        { ...inputValue },
+        {
+          withCredentials: true, // ✅ only if you're using cookies
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
 
 

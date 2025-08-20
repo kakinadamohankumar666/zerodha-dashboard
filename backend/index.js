@@ -18,7 +18,9 @@ const url = process.env.MONGO_URL;
 const app = express();
 
 app.use(cors({
-  origin: [ "http://localhost:3000"],
+  origin: [ "http://localhost:3000",
+     "https://zerodha-dashboard-sigma.vercel.app"
+  ],
   credentials: true,
 }));
 
@@ -203,9 +205,9 @@ app.get("/allPositions" ,async (req ,res) =>{
     res.json(allPositions);
 });
 
-app.get("/allOrders" ,async (req,res) =>{
-    let allOrders = await OrdersModel.find({});
-    res.json(allOrders);
+app.get("/allOrders", async (req, res) => {
+  let allOrders = await OrdersModel.find({});
+  res.json(allOrders);
 });
 
 app.post('/newOrder',async(req,res)=>{
