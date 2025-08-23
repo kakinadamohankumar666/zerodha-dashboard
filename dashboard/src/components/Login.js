@@ -40,7 +40,7 @@ const Login = () => {
       const { success, message } = data;
       if (success) {
         toast.success(message, { position: "bottom-left" });
-        window.location.href = "/";
+        window.location.href = "/home";
       } else {
         toast.error(message, { position: "bottom-left" });
       }
