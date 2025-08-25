@@ -123,45 +123,14 @@
 
 // export default Home;
 
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import React from "react";
+import { ToastContainer } from "react-toastify";
 
 // Imports from your first file
 import TopBar from "./TopBar";
 import Dashboard from "./Dashboard";
 
 const Home = () => {
-  // All of the following logic is taken directly from your second file, UNCHANGED.
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const verifyCookie = async () => {
-      try {
-        const { data } = await axios.post(
-          `${process.env.REACT_APP_API_URL}/`,
-          {},
-          { withCredentials: true }
-        );
-        const { status, user } = data;
-        if (status) {
-          setUsername(user);
-          toast(`Hello ${user}`, { position: "top-right" });
-        } else {
-          navigate("/login");
-        }
-      } catch (err) {
-        navigate("/login");
-      }
-    };
-    verifyCookie();
-  }, [navigate]);
-
-  const Logout = () => {
-    navigate("/login");
-  };
 
   // The content inside the return is from your first file.
   return (

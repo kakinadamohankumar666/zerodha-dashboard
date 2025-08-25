@@ -24,12 +24,14 @@ const allowedOrigins = [
   "https://zerodha-dashboard-pjw4fwuxz-kakinada-mohankumars-projects.vercel.app",
   "https://zerodha-dashboard-git-main-kakinada-mohankumars-projects.vercel.app",
 ];
+const vercelRegex = /^https:\/\/[a-z0-9-]+\.[a-z0-9-]+\.vercel\.app$/i;
 
 app.set('trust proxy', 1);
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
+    if (vercelRegex.test(origin)) return callback(null, true);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
