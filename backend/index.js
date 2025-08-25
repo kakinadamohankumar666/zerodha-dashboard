@@ -18,12 +18,20 @@ const url = process.env.MONGO_URL;
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://zerodha-dashboard-sigma.vercel.app",
+  "https://zerodha-dashboard-pjw4fwuxz-kakinada-mohankumars-projects.vercel.app",
+  "https://zerodha-dashboard-git-main-kakinada-mohankumars-projects.vercel.app",
+];
+
+app.set('trust proxy', 1);
 app.use(cors({
-  origin: [ "http://localhost:3000",
-     "https://zerodha-dashboard-sigma.vercel.app",
-     "https://zerodha-dashboard-pjw4fwuxz-kakinada-mohankumars-projects.vercel.app",
-     "https://zerodha-dashboard-git-main-kakinada-mohankumars-projects.vercel.app"
-  ],
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
 }));
 

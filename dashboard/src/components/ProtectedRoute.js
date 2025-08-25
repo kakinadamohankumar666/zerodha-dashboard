@@ -8,10 +8,14 @@ const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    const verifyUserSession = async () => {clearInterval
+    const verifyUserSession = async () => {
       try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/`, {}, { withCredentials: true });
-        setIsAuthenticated(true);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/`, {}, { withCredentials: true });
+        if (response?.data?.status) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
       } catch (error) {
         setIsAuthenticated(false);
       }

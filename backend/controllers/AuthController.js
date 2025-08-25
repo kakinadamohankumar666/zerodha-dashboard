@@ -11,15 +11,14 @@ module.exports.Signup = async (req, res, next) => {
     }
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
-    // res.cookie("token", token, {
-    //   withCredentials: true,
-    //   httpOnly: false,
-    // });
-    res.cookie("token", token, {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       httpOnly: true,
-      secure: true, // required in production (HTTPS)
-      sameSite: "None", // allow cross-site cookies
-    });
+      secure: isProduction,
+      sameSite: isProduction ? 'None' : 'Lax',
+      maxAge: 3 * 24 * 60 * 60 * 1000,
+    };
+    res.cookie("token", token, cookieOptions);
     res
       .status(201)
       .json({ message: "User signed in successfully", success: true, user });
@@ -44,15 +43,14 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
-    //  res.cookie("token", token, {
-    //    withCredentials: true,
-    //    httpOnly: false,
-    //  });
-    res.cookie("token", token, {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       httpOnly: true,
-      secure: true, // required in production (HTTPS)
-      sameSite: "None", // allow cross-site cookies
-    });
+      secure: isProduction,
+      sameSite: isProduction ? 'None' : 'Lax',
+      maxAge: 3 * 24 * 60 * 60 * 1000,
+    };
+    res.cookie("token", token, cookieOptions);
     res
       .status(201)
       .json({ message: "User logged in successfully", success: true });

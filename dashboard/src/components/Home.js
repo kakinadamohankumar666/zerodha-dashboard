@@ -146,7 +146,7 @@ const Home = () => {
         return;
       }
       const { data } = await axios.post(
-        "http://localhost:3002",
+        `${process.env.REACT_APP_API_URL}/`,
         {},
         { withCredentials: true }
       );
@@ -163,7 +163,7 @@ const Home = () => {
 
   const Logout = () => {
     removeCookie("token");
-    navigate("/signup");
+    navigate("/login");
   };
 
   // The content inside the return is from your first file.

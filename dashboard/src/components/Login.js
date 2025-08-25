@@ -28,7 +28,7 @@ const Login = () => {
         `${process.env.REACT_APP_API_URL}/login`,
         { ...inputValue },
         {
-          withCredentials: true, // ✅ only if you're using cookies
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
@@ -40,7 +40,7 @@ const Login = () => {
       const { success, message } = data;
       if (success) {
         toast.success(message, { position: "bottom-left" });
-        window.location.href = "/home";
+        window.location.href = "/";
       } else {
         toast.error(message, { position: "bottom-left" });
       }
